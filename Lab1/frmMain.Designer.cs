@@ -47,8 +47,6 @@
             this.tbA.Name = "tbA";
             this.tbA.Size = new System.Drawing.Size(73, 30);
             this.tbA.TabIndex = 1;
-            this.tbA.TextChanged += new System.EventHandler(this.tb_TextChanged);
-            this.tbA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_KeyPress);
             // 
             // tbB
             // 
@@ -57,8 +55,6 @@
             this.tbB.Name = "tbB";
             this.tbB.Size = new System.Drawing.Size(73, 30);
             this.tbB.TabIndex = 2;
-            this.tbB.TextChanged += new System.EventHandler(this.tb_TextChanged);
-            this.tbB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_KeyPress);
             // 
             // tbC
             // 
@@ -67,8 +63,6 @@
             this.tbC.Name = "tbC";
             this.tbC.Size = new System.Drawing.Size(73, 30);
             this.tbC.TabIndex = 3;
-            this.tbC.TextChanged += new System.EventHandler(this.tb_TextChanged);
-            this.tbC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_KeyPress);
             // 
             // panel1
             // 

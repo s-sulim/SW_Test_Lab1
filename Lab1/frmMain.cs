@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,7 +20,30 @@ namespace Lab1
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            CalculateTriangle();
+            if (!(Regex.IsMatch(tbA.Text, @"^\d+$") && Regex.IsMatch(tbB.Text, @"^\d+$") && Regex.IsMatch(tbC.Text, @"^\d+$")))
+            {
+                MessageBox.Show($"One ore more of the entered values is invalid!{Environment.NewLine}Please, make sure you have entered only positive digits (0 and any letters are not allowed).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (CheckText4Zero(ref tbA) || CheckText4Zero(ref tbB) || CheckText4Zero(ref tbC))
+                {
+                    MessageBox.Show($"One ore more of the entered values is equal to 0!{Environment.NewLine}Please, enter only positive numbers", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    CalculateTriangle();
+                }
+            }
+        }
+        private bool CheckText4Zero(ref TextBox tbx)
+        {
+            bool flg = false;
+            if (tbx.Text == "0" || String.Concat(tbx.Text.GroupBy(c => c).SelectMany(g => $"{g.Key}")) == "0")
+            {
+                flg = true;
+            }
+            return flg;
         }
         private string Check4Isosceles(List<int> triangleSides)
         {
@@ -131,20 +155,6 @@ namespace Lab1
                         }
                     }
                 }
-            }
-        }
-        private void tb_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
-                e.Handled = true;
-        }
-
-        private void tb_TextChanged(object sender, EventArgs e)
-        {
-            if (((TextBox)sender).Text == "0" || String.Concat(((TextBox)sender).Text.GroupBy(c => c).SelectMany(g => $"{g.Key}")) == "0")
-            {
-                MessageBox.Show("A side of the triangle cannot be 0!", "Error",  MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ((TextBox)sender).Text = "";
             }
         }
     }
